@@ -21,7 +21,7 @@ pipeline {
                     // Login to Docker Hub and push the Docker image
                     withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
                         sh '''
-                        docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+                        echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
                         docker push 94233949/demo:v0.0.$BUILD_ID
                         docker rmi 94233949/demo:v0.0.$BUILD_ID
                         '''
