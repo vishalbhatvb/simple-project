@@ -1,0 +1,27 @@
+image:
+  repository: 94233949/argo
+  tag: v1.0.2
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: true
+  # Set to false to disable
+  hostname: example.com
+  path: /
+  port: 80
+
+persistence:
+  enabled: true
+  storageClass: "manual"
+  accessModes:
+    - ReadWriteOnce
+  size: 1Gi
+
+secret:
+  username: user
+  password: password
+
