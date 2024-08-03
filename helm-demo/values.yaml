@@ -1,3 +1,4 @@
+replicaCount: 1
 image:
   repository: 94233949/argo
   tag: v1.0.2
