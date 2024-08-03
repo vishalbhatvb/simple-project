@@ -11,7 +11,7 @@ pipeline {
             steps {
                 script {
                     // Build the Docker image
-                    sh 'docker build -t 94233949/k8s:v0.0.$BUILD_ID . --no-cache'
+                    sh 'docker build -t 94233949/argo:v1.0.$BUILD_ID . --no-cache'
                 }
             }
         }
@@ -22,8 +22,8 @@ pipeline {
                     withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
                         sh '''
                         echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
-                        docker push 94233949/k8s:v0.0.$BUILD_ID
-                        docker rmi 94233949/k8s:v0.0.$BUILD_ID
+                        docker push 94233949/argo:v1.0.$BUILD_ID
+                        docker rmi 94233949/argo:v1.0.$BUILD_ID
                         '''
                     }
                 }
