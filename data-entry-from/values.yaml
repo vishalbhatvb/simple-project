@@ -14,7 +14,7 @@ service:
 ingress:
   enabled: true
   annotations: {}
-  path: 
+  path: /
   hosts: []
   tls: []
   #  - secretName: chart-example-tls
