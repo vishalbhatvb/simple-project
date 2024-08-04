@@ -1,20 +1,22 @@
 replicaCount: 1
+
 image:
   repository: 94233949/argo
   tag: v1.0.2
-  pullPolicy: IfNotPresent #instance of the application will be running.
+  pullPolicy: IfNotPresent
 
-containerPort: 80 # Specifies the port on which the application container listens for incoming requests
+containerPort: 80
+
 service:
   type: ClusterIP
-  port: 80 #The port on which the service will be exposed
+  port: 80
 
 ingress:
-  enabled: false
+  enabled: true
   annotations: {}
-    path: /
-  hosts:
-    tls: []
+  path: /
+  hosts: []
+  tls: []
   #  - secretName: chart-example-tls
   #    hosts:
   #      - chart-example.local
@@ -42,16 +44,3 @@ persistence:
   size: 1Gi
   # Uncomment and configure the following if you need a specific path for the volume
   # path: /data
-
-# Ingress configuration
-ingress:
-  enabled: true
-  annotations: {}
-    # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
-  path: /
-  hosts:
-  tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
