@@ -4,6 +4,9 @@ metadata:
   name: {{ include "Data-Entry-Form.fullname" . }}
   labels:
     {{- include "Data-Entry-Form.labels" . | nindent 4 }}
+    chart: {{ template "Data-Entry-Form.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
 spec:
   type: {{ .Values.service.type }}
   ports:
@@ -13,3 +16,4 @@ spec:
       name: http
   selector:
     {{- include "Data-Entry-Form.selectorLabels" . | nindent 4 }}
+    release: {{ .Release.Name }}
