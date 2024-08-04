@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "Data-Entry-Form.fullname" . }}
+  labels:
+    app: {{ template "Data-Entry-Form.name" . }}
+    chart: {{ template "Data-Entry-Form.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app: {{ template "Data-Entry-Form.name" . }}
+    release: {{ .Release.Name }}
