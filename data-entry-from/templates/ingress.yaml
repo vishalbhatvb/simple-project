@@ -2,9 +2,9 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ include "your-chart.fullname" . }}-ingress
+  name: {{ include "data-entry-from.fullname" . }}-ingress
   labels:
-    app: {{ include "your-chart.name" . }}
+    app: {{ include "data-entry-from.name" . }}
   annotations:
     {{- toYaml .Values.ingress.annotations | nindent 4 }}
 spec:
@@ -16,7 +16,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: {{ include "your-chart.fullname" . }}
+                name: {{ include "data-entry-from.fullname" . }}
                 port:
                   number: {{ .Values.service.port }}
   {{- if .Values.ingress.tls }}
