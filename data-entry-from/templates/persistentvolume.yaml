@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: {{ include "your-chart.fullname" . }}-pv
+  labels:
+    app: {{ include "your-chart.name" . }}
+spec:
+  accessModes:
+    - {{ .Values.persistence.accessModes | first }}
+  capacity:
+    storage: {{ .Values.persistence.size }}
+  hostPath:
+    path: /mnt/data
+  storageClassName: {{ .Values.persistence.storageClass }}
