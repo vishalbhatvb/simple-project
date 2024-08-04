@@ -1,20 +1,20 @@
 replicaCount: 1
-
+#number of instances 
 image:
   repository: 94233949/argo
   tag: v1.0.2
   pullPolicy: IfNotPresent
 
-containerPort: 80
+containerPort: 80 #The port number on which your application container listens for incoming requests. This port is used inside the container.
 
 service:
   type: ClusterIP
-  port: 80
+  port: 80 #The port number on which the service will be exposed.
 
 ingress:
   enabled: true
   annotations: {}
-  path: /
+  path: 
   hosts: []
   tls: []
   #  - secretName: chart-example-tls
