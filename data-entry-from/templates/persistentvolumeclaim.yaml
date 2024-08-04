@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: {{ include "your-chart.fullname" . }}-pvc
+  name: {{ include "data-entry-from.fullname" . }}-pvc
   labels:
-    app: {{ include "your-chart.name" . }}
+    app: {{ include "data-entry-from.name" . }}
 spec:
   accessModes:
     - {{ .Values.persistence.accessModes | first }}
