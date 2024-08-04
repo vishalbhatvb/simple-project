@@ -1,35 +1,25 @@
-
 replicaCount: 1
-
 image:
   repository: 94233949/argo
   tag: v1.0.2
-  pullPolicy: IfNotPresent
+  pullPolicy: IfNotPresent #instance of the application will be running.
 
-containerPort: 80 # which the application container listens.
-
+containerPort: 80 # Specifies the port on which the application container listens for incoming requests
 service:
   type: ClusterIP
-  port: 80
+  port: 80 #The port on which the service will be exposed
 
 ingress:
   enabled: false
   annotations: {}
-    # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
-  path: /
+    path: /
   hosts:
-    - chart-example.local
-  tls: []
+    tls: []
   #  - secretName: chart-example-tls
   #    hosts:
   #      - chart-example.local
 
 resources: {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
   # limits:
   #  cpu: 100m
   #  memory: 128Mi
@@ -42,3 +32,26 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+# PersistentVolume (PV) and PersistentVolumeClaim (PVC) settings
+persistence:
+  enabled: true
+  storageClass: "manual" # Use "default" if you have a default storage class
+  accessModes:
+    - ReadWriteOnce
+  size: 1Gi
+  # Uncomment and configure the following if you need a specific path for the volume
+  # path: /data
+
+# Ingress configuration
+ingress:
+  enabled: true
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  path: /
+  hosts:
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
