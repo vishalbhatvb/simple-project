@@ -12,7 +12,7 @@ service:
   port: 80 #The port number on which the service will be exposed.
 
 ingress:
-  enabled: true
+  enabled: flase
   annotations: {}
   path: /
   hosts: []
