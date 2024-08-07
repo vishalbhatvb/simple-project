@@ -1,4 +1,52 @@
 
++--------------------+
+|    Dockerfile      |
+|  (Define App Image)|
++--------------------+
+          |
+          v
++--------------------+        +---------------------+
+|      Jenkins       |        | Docker Registry     |
+|  (Build Docker Img)| -----> | (Push Docker Image) |
++--------------------+        +---------------------+
+                                  |
+                                  v
+                         +-------------------+
+                         |     Minikube      |
+                         |  (Local Kubernetes|
+                         |   Cluster)        |
+                         +-------------------+
+                                  |
+                                  v
++--------------------+    +---------------------+
+|      kubectl       |    |      Namespace      |
+|  (Configure Context)|  |   (argocd)          |
++--------------------+    +---------------------+
+                                  |
+                                  v
+                         +-------------------+
+                         |     Argo CD        |
+                         |   (Deploy & Manage)|
+                         +-------------------+
+                                  |
+                                  v
++--------------------+    +---------------------+
+|    Helm Chart      |    |  Helm Chart Config  |
+|  (Create Chart)    |    | (Docker Image, PVC) |
++--------------------+    +---------------------+
+                                  |
+                                  v
+                         +-------------------+
+                         |  Deploy with Argo |
+                         |   CD (GitOps)      |
+                         +-------------------+
+                                  |
+                                  v
+                         +-------------------+
+                         |  Argo CD Dashboard |
+                         |  (Monitor Status)  |
+                         +-------------------+
+
 1. Create Dockerfile: Define your application's Dockerfile to build an image.
 
 2. Build and Push Docker Image:
@@ -31,3 +79,6 @@
 
 you can set up a CI/CD pipeline using Jenkins, build and push a Docker image, configure Minikube, 
 deploy and manage your application using Helm and Argo CD, and monitor your deployment effectively.
+
+
+
